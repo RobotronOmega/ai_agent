@@ -11,3 +11,4 @@ wheels/
 
 # Google Gemini API Key
 .env
+calculator/

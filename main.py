@@ -14,12 +14,14 @@ def main():
         print("no prompt provided")
         sys.exit(1)
     messages = [
-            types.Content(role="user", parts=[types.Part(sys.argv[1])]),
+            types.Content(role="user", parts=[types.Part(text=sys.argv[1])]),
             ]
     response = client.models.generate_content(model='gemini-2.0-flash-001', contents=messages,)
-    print(response.text)
-    print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
-    print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
+    print(f"Response: {response.text}")
+    if "--verbose" in sys.argv:
+        print(f"User prompt: {sys.argv[1]}")
+        print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
+        print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
 
 if __name__ == "__main__":
     main()
