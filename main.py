@@ -48,7 +48,7 @@ def call_function(function_call_part, verbose=False):
             print(f" - Calling function: {function_call_part.name}")
         args_dict = copy.deepcopy(function_call_part.args)
         args_dict["working_directory"] = "./calculator"
-        print(args_dict)
+        #print(args_dict)
         function_result = ""
         match (function_call_part.name):
             case "get_files_info":
@@ -107,7 +107,7 @@ def main():
             for part in candidate.content.parts:
                 if hasattr(part, 'function_call'):
                     if part.function_call != None:
-                        print(f"{part.function_call}")
+                        #print(f"{part.function_call}")
                         has_function_calls = True
                         func_result = call_function(part.function_call, True)
                         if not func_result.parts[0].function_response.response:
